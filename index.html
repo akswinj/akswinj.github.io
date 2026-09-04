@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akswin JEYAKUMAR | Portfolio & Démarche BUT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #070b14;
+            --surface: #101726;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(139, 92, 246, 0.3);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 15% 0%, rgba(30, 20, 50, 0.8), transparent 40%),
+                radial-gradient(circle at 85% 100%, rgba(25, 15, 45, 0.6), transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .noise {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.03;
+            background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(7, 11, 20, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5vw;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            padding-top: 25vh;
+            padding-bottom: 4rem;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-top: 1.5rem;
+            max-width: 700px;
+            font-weight: 300;
+        }
+
+        .intro-text {
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 800px;
+            margin-top: 2rem;
+            background: rgba(16, 23, 38, 0.5);
+            padding: 1.5rem;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .social-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .social-link svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            margin-top: 6rem;
+            letter-spacing: -0.02em;
+            scroll-margin-top: 100px;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .bento-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bento-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(139, 92, 246,0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .bento-card:hover::before { opacity: 1; }
+        .bento-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .bento-card-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .span-12 { grid-column: span 12; }
+        .span-8 { grid-column: span 8; }
+        .span-7 { grid-column: span 7; }
+        .span-6 { grid-column: span 6; }
+        .span-5 { grid-column: span 5; }
+        .span-4 { grid-column: span 4; }
+
+        @media (max-width: 900px) {
+            .span-8, .span-7, .span-6, .span-5, .span-4 { grid-column: span 12; }
+            .nav-content { flex-direction: column; gap: 0.8rem; }
+            .nav-links { gap: 1rem; font-size: 0.85rem; flex-wrap: wrap; justify-content: center; }
+            .hero { padding-top: 30vh; }
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+        }
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+        }
+        .card-desc {
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .reflexive-box {
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .reflexive-title {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .tech-pill {
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(139, 92, 246,0.2);
+            font-size: 0.85rem;
+            background: rgba(139, 92, 246,0.05);
+            color: var(--text-primary);
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            display: flex;
+            white-space: nowrap;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            padding: 2rem 0;
+        }
+        .marquee-content {
+            display: flex;
+            align-items: center;
+            animation: marquee 20s linear infinite;
+        }
+        .marquee-logo {
+            height: 50px;
+            margin: 0 2.5rem;
+            filter: grayscale(100%) opacity(0.7) brightness(1.5);
+            transition: filter 0.3s, transform 0.3s;
+        }
+        .marquee-logo:hover {
+            filter: grayscale(0%) opacity(1) brightness(1);
+            transform: scale(1.1);
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .timeline {
+            border-left: 1px solid var(--border);
+            padding-left: 2rem;
+            margin-left: 1rem;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 0.4rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--text-secondary);
+            transition: border-color 0.3s;
+        }
+        .timeline-item:hover::before {
+            border-color: var(--accent);
+        }
+        .timeline-date {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        .timeline-loc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 0.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="nav-logo">AJ.</a>
+            <div class="nav-links">
+                <a href="#competences">Compétences</a>
+                <a href="#projets">Projets (SAÉ)</a>
+                <a href="#parcours">Parcours & Stages</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section avec Logique de parcours (Bilan d'étape) -->
+        <section class="hero">
+            <h1 class="hero-title fade-up">Akswin<br>JEYAKUMAR</h1>
+            <p class="hero-subtitle fade-up" style="transition-delay: 0.1s;">
+                Étudiant en BUT 2 Informatique / Sciences des données
+            </p>
+            
+            <div class="intro-text fade-up" style="transition-delay: 0.15s;">
+                <strong>Ma logique d'orientation :</strong> Initialement en BUT 1 Génie Électrique et Informatique Industrielle (GEII), j'ai constaté que l'approche matérielle et électronique pure me correspondait moins. J'ai alors effectué un BTS CIEL IR pour m'orienter vers l'informatique avec des notions de réseaux, de cybersécurité, mais aussi d'électronique (que j'avais déjà abordée en BUT GEII), avant d'intégrer ce BUT 2 Passerelle. Ce choix affirme ma passion pour le développement logiciel et l'informatique pur. Mon ambition professionnelle actuelle est de poursuivre l'année prochaine en BUT 3 Informatique, afin de maîtriser complètement les systèmes avant d'entrer sur le marché du travail ou de poursuivre vers une école d'ingénieurs.
+            </div>
+
+            <div class="social-links fade-up" style="transition-delay: 0.2s;">
+                <a href="https://github.com/akswinj" target="_blank" class="social-link" title="GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/akswin-jeyakumar" target="_blank" class="social-link" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="mailto:aj.akswin@gmail.com" class="social-link" title="Email">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.866l5.6-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <h2 id="competences" class="section-title fade-up">Compétences Techniques</h2>
+        
+        <!-- Marquee / Logos -->
+        <div class="bento-card span-12 fade-up" style="padding: 0; border: none; background: transparent; margin-bottom: 2rem;">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" title="Python" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java" title="Java" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" title="HTML5" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" title="CSS3" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" title="React" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" title="PHP" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" alt="Django" title="Django" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux" title="Linux" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Bash" title="Bash" class="marquee-logo">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" title="Python" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java" title="Java" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" title="HTML5" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" title="CSS3" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" title="React" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" title="PHP" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" alt="Django" title="Django" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux" title="Linux" class="marquee-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Bash" title="Bash" class="marquee-logo">
+                </div>
+            </div>
+        </div>
+
+        <h2 id="projets" class="section-title fade-up">Projets & Traces d'apprentissage (SAÉ)</h2>
+        
+        <div class="bento-grid">
+            
+            <!-- SAÉ 4.01 -->
+            <div class="bento-card span-7 fade-up interactive-card">
+                <div class="bento-card-content">
+                    <span class="card-tag">SAÉ 4.01 | Compétences : Réaliser, Optimiser, Administrer, Gérer, Conduire, Collaborer</span>
+                    <h3 class="card-title">Système Centralisé de Supervision Sonore</h3>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Django / Python</span>
+                        <span class="tech-pill">API REST</span>
+                                                <span class="tech-pill">SQLite</span>
+                    </div>
+                    <p class="card-desc">Projet mené en trinôme sur un mois, combinant séances encadrées et travail en autonomie. J'ai conçu l'architecture Backend et Réseau pour piloter un parc d'équipements IoT (Volumio). J'ai développé des routes de communication sécurisées et modélisé la base de données. La gestion stricte des accès a aussi été intégrée. Ce type de réalisation est directement valorisable dans le monde professionnel pour le déploiement et la sécurisation d'infrastructures réseau multi-sites.</p>
+                    
+                    <div class="reflexive-box">
+                        <div class="reflexive-title">Auto-évaluation et Recul Critique</div>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 0;"><strong>Points forts :</strong> L'implémentation de la logique Backend. J'ai réussi à rendre l'API fonctionnelle pour envoyer les commandes de lecture aux machines (Pause/Play).<br>
+                        <strong>Points de vigilance / Problèmes :</strong> Le lancement du projet a été très difficile. L'équipe a eu du mal à cerner les attentes exactes au départ malgré les indications du professeur. Bien que nous ayons compris les mécanismes en cours de route, le retard accumulé nous a empêchés de terminer entièrement la SAÉ (l'interface de contrôle du Frontend n'a pas pu être finalisée par l'équipe).<br>
+                        <strong>Acquis :</strong> Le professeur s'est montré compréhensif face à ces difficultés lors de l'évaluation (Notes : 19/20 à l'écrit, 11/20 à l'oral). J'ai surtout pris conscience de l'importance cruciale de la phase d'analyse fonctionnelle avant de coder.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAÉ 3.01 -->
+            <div class="bento-card span-5 fade-up interactive-card" style="transition-delay: 0.1s;">
+                <div class="bento-card-content">
+                    <span class="card-tag">SAÉ 3.01 | Compétences : Réaliser, Optimiser, Administrer, Gérer, Conduire, Travailler</span>
+                    <h3 class="card-title">Analyse et Visualisation de Données</h3>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python (Pandas, Matplotlib)</span>
+                        <span class="tech-pill">Data Cleaning</span>
+                    </div>
+                    <p class="card-desc">Travail collaboratif réalisé à trois étudiants en totale autonomie sur 3 semaines (hors temps de cours). Nous avons nettoyé, traité et exploité un jeu de données de 5 000 utilisateurs et 39 variables. La création de visualisations a permis de démontrer que la consommation de médias augmente drastiquement après 40 ans. Ces compétences techniques sont directement valorisables pour des postes d'analyste de données orientés marketing et aide à la décision.</p>
+                    
+                    <div class="reflexive-box">
+                        <div class="reflexive-title">Auto-évaluation et Recul Critique</div>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 0;"><strong>Points forts :</strong> Détection de signaux cachés dans les données (mot IMOVIE tracé via scatter plot).<br>
+                        <strong>Points de vigilance :</strong> J'ai identifié un biais lors de notre nettoyage. Le choix de remplacer systématiquement les valeurs manquantes par la moyenne peut fausser certaines analyses. Les variables aberrantes (ex: âges à 570 ans) exigent un filtrage plus strict à l'avenir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet Parking (BTS) -->
+            <div class="bento-card span-6 fade-up interactive-card">
+                <div class="bento-card-content">
+                    <span class="card-tag">Projet de fin d'études BTS CIEL IR</span>
+                    <h3 class="card-title">Gestion de Parking Connecté</h3>
+                    <div class="tech-stack">
+                        <span class="tech-pill">C++</span>
+                        <span class="tech-pill">Sockets TCP</span>
+                        <span class="tech-pill">BDD</span>
+                    </div>
+                    <p class="card-desc" style="margin-bottom:0;">Communication TCP via C++ avec des capteurs de distances, lampes connectées et prises connectées TP Link (grâce au reverse-engineering). Transmission sécurisée à une base de données et affichage temps réel sur interface web. (Assisté par IA).</p>
+                </div>
+            </div>
+
+            <!-- Projet Robot (GEII) -->
+            <div class="bento-card span-6 fade-up interactive-card" style="transition-delay: 0.1s;">
+                <div class="bento-card-content">
+                    <span class="card-tag">SAÉ BUT 1 GEII</span>
+                    <h3 class="card-title">Robot Gamel-Trophy</h3>
+                    <div class="tech-stack">
+                        <span class="tech-pill">C</span>
+                        <span class="tech-pill">PCB Design</span>
+                        <span class="tech-pill">Hardware</span>
+                    </div>
+                    <p class="card-desc" style="margin-bottom:0;">Développement d'un robot suiveur de ligne. Modélisation de PCB, soudure de précision de composants électroniques et logique embarquée programmée en C.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 id="parcours" class="section-title fade-up">Parcours & Expériences Professionnelles</h2>
+        
+        <div class="bento-grid">
+            <!-- Expérience (Stages) -->
+            <div class="bento-card span-7 fade-up interactive-card">
+                <div class="bento-card-content">
+                    <span class="card-tag">Bilan des stages</span>
+                    
+                    <div class="timeline" style="margin-top: 1.5rem; margin-left: 0; padding-left: 1.5rem;">
+                        <!-- Stage METM -->
+                        <div class="timeline-item">
+                            <div class="timeline-date">Juil. — Août 2026</div>
+                            <div class="timeline-title" style="font-size: 1.2rem;">Stage en développement logiciel</div>
+                            <div class="timeline-loc">METM (Rosny-sous-Bois)</div>
+                            <p class="card-desc" style="font-size: 0.9rem; margin-bottom: 0.8rem;">
+                                <strong>Compétences mobilisées : Réaliser, Optimiser, Administrer, Gérer, Conduire, Collaborer.</strong> Automatisation globale de la logistique : centralisation des stocks, audit d'expéditions, intégration d'API (Temu, eBay, Amazon), et effacement sécurisé de données sur disques de stockage.
+                            </p>
+                            <div class="tech-stack" style="margin-bottom: 1rem;">
+                                <span class="tech-pill">Python</span>
+                                <span class="tech-pill">PHP</span>
+                                <span class="tech-pill">JavaScript</span>
+                                <span class="tech-pill">SQL</span>
+                            </div>
+                            <div class="reflexive-box" style="margin-top: 0;">
+                                <div class="reflexive-title">Analyse réflexive</div>
+                                <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0;">J'ai appris à coder en utilisant l'Intelligence Artificielle comme un assistant technique à diriger (ingénierie de prompt). J'ai fait preuve d'une grande flexibilité en adaptant mes missions face aux pannes d'expédition. J'ai aussi pris conscience des murs administratifs : un code fonctionnel peut être bloqué par les restrictions de plateformes tierces.</p>
+                            </div>
+                        </div>
+
+                        <!-- Stage Goutte d'ordinateur -->
+                        <div class="timeline-item">
+                            <div class="timeline-date">Mai — Juil. 2024</div>
+                            <div class="timeline-title" style="font-size: 1.2rem;">Stage en médiation numérique</div>
+                            <div class="timeline-loc">La Goutte d'Ordinateur (Paris)</div>
+                            <p class="card-desc" style="font-size: 0.9rem; margin-bottom: 0.8rem;">
+                                Dépannage matériel et logiciel (PC/Smartphones), maintenance préventive, installation de systèmes d'exploitation, et accompagnement pédagogique des usagers dans l'utilisation des outils numériques.
+                            </p>
+                            <div class="reflexive-box" style="margin-top: 0;">
+                                <div class="reflexive-title">Analyse réflexive</div>
+                                <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0;">Le développement de mon relationnel. J'ai acquis une bonne adaptation face à des publics variés et perfectionné ma capacité à vulgariser les problèmes techniques pour les résoudre avec pédagogie (sens de l'initiative).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formations -->
+            <div class="bento-card span-5 fade-up interactive-card" style="background: transparent; border: none; padding-right: 0;">
+                <div class="bento-card-content">
+                    <span class="card-tag">Historique Académique</span>
+                    <div class="timeline" style="margin-top: 1.5rem; margin-left: 0; padding-left: 1.5rem;">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Objectif : 2026 — 2027</div>
+                            <div class="timeline-title">BUT 3 Informatique (Formation initiale)</div>
+                            <div class="timeline-loc">IUT de Villetaneuse - Univ. Sorbonne Paris Nord</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025 — 2026</div>
+                            <div class="timeline-title">BUT 2 Informatique / Sciences des données (Passerelle)</div>
+                            <div class="timeline-loc">IUT de Villetaneuse - Univ. Sorbonne Paris Nord</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023 — 2025</div>
+                            <div class="timeline-title">BTS CIEL IR (Cybersécurité, Info, Réseaux)</div>
+                            <div class="timeline-loc">Lycée Dorian, Paris</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022 — 2023</div>
+                            <div class="timeline-title">BUT 1 Génie Électrique & Info. Industrielle</div>
+                            <div class="timeline-loc">IUT de Cachan - Univ. Paris-Saclay</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <footer>
+            <p>© Akswin JEYAKUMAR.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
